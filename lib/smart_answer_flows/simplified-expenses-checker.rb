@@ -443,6 +443,11 @@ module SmartAnswer
           Money.new(vehicle + green + dirty + filthy + home)
         end
 
+        precalculate :capital_allowances_estimate do
+          business_costs = simple_business_costs.to_f || 0
+          Money.new(current_scheme_costs + business_costs)
+        end
+
         precalculate :can_use_simple do
           simple_total > current_scheme_costs
         end
